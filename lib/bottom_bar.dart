@@ -1,18 +1,12 @@
 import 'package:cookies_app/Ui/home.dart';
-import 'package:cookies_app/View_Model/bottom_bar_view_model.dart';
 import 'package:cookies_app/Ui/cart.dart';
 import 'package:cookies_app/Ui/profile.dart';
 import 'package:cookies_app/Ui/search.dart';
 import 'package:flutter/material.dart';
 
-import '../base/base_view.dart';
-
 class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BaseView<BottomBarViewModel>(
-        onModelReady: (model) {},
-        builder: (context, model, build) {
           return BottomAppBar(
               shape: CircularNotchedRectangle(),
               notchMargin: 6.0,
@@ -92,6 +86,4 @@ class BottomBar extends StatelessWidget {
               )
           );
         }
-    );
-  }
 }

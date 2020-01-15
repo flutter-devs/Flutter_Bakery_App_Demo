@@ -1,7 +1,3 @@
-
-
-
-import 'package:cookies_app/View_Model/bottom_bar_view_model.dart';
 import 'package:cookies_app/View_Model/cart_view_model.dart';
 import 'package:cookies_app/View_Model/cookie_cake_view_model.dart';
 import 'package:cookies_app/View_Model/cookie_detail_view_model.dart';
@@ -30,7 +26,6 @@ void setLocator(){
   locator.registerLazySingleton(() => CookiePageViewModel());
   locator.registerLazySingleton(() => SearchViewModel());
   locator.registerLazySingleton(() => CartViewModel());
-  locator.registerLazySingleton(() => BottomBarViewModel());
   locator.registerLazySingleton(() => SignUpViewModel());
 
 

@@ -1,6 +1,6 @@
 import 'package:cookies_app/View_Model/home_view_model.dart';
 import 'package:cookies_app/base/base_view.dart';
-import 'package:cookies_app/Ui/bottom_bar.dart';
+import 'package:cookies_app/bottom_bar.dart';
 import 'package:cookies_app/Ui/cookie_cake.dart';
 import 'package:cookies_app/Ui/cookie_icecream.dart';
 import 'package:cookies_app/Ui/cookie_page.dart';
