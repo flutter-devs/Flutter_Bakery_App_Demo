@@ -1,11 +1,13 @@
+import 'package:cookies_app/Ui/home.dart';
 import 'package:cookies_app/View_Model/search_view_model.dart';
+import 'package:cookies_app/autoComplete.dart';
 import 'package:cookies_app/base/base_view.dart';
-import 'package:cookies_app/bottom_bar.dart';
-import 'package:cookies_app/main.dart';
+import 'package:cookies_app/splash.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
 class Search extends StatefulWidget {
@@ -15,156 +17,123 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search>{
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  static final CameraPosition _myLocation =
+  CameraPosition(target: LatLng(0.0,0.0));
 
-  Position _currentPosition;
-  String _currentAddress;
 
   @override
   Widget build(BuildContext context) {
     return BaseView<SearchViewModel>(
         onModelReady: (model) {},
         builder: (context, model, build) {
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0.0,
-              centerTitle: true,
-              bottom: PreferredSize(child: Padding(
-                padding: const EdgeInsets.only(left: 28.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text("Find My location", style: TextStyle(
-                        fontSize: 28, fontWeight: FontWeight.bold),),
-                  ],
-                ),
-              ), preferredSize: Size.fromHeight(30.0)),
-              leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: Color(0xFF545D68)),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => MyApp()
-                  ));
-                },
-              ),
-              title:
-              Text('Location',
-                  style: TextStyle(
-                      fontSize: 20.0,
-                      color: Color(0xFF545D68))),
-
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(
-                      Icons.notifications_none, color: Color(0xFFC88D67)),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            body: Container(
-              color: Color(0xFFFBFAF8),
-              child: ListView(
-                padding: EdgeInsets.only(left: 20.0, right: 20),
-                children: <Widget>[
-                  SizedBox(height: 15.0),
-                  /*TextFormField(
-              decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xFF473D3A),
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
-                  ),
-                  hintText: "Location",
-                  suffixIcon: IconButton(icon: Icon(Icons.search), onPressed:(){ _getCurrentLocation();})
-            ),
-              cursorColor: Colors.black,
-            ),*/
-                  InkWell(
-                      onTap: () {
-                        _getCurrentLocation();
-                      },
-                      child: Container(
-                          height: 50.0,
-                          width: 225.0,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                              BorderRadius.circular(25.0),
-                              color: Colors.white70),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0, right: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text('Get Location',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.grey)),
-                                Icon(Icons.search),
-                              ],
-                            ),
-                          ))),
-                  SizedBox(height: 20,),
-                  Center(
-                    child: Column(
+          return WillPopScope(
+            child: SafeArea(
+              child: Scaffold(
+                resizeToAvoidBottomPadding: false,
+                resizeToAvoidBottomInset: true,
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  elevation: 0.0,
+                  centerTitle: true,
+                  bottom: PreferredSize(child: Padding(
+                    padding: const EdgeInsets.only(left: 28.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Icon(Icons.location_on),
-                        if (_currentPosition != null) Text(
-                          _currentAddress, style: TextStyle(fontSize: 18),),
-
+                        Text("Find My location", style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold),),
                       ],
                     ),
-                  )
+                  ), preferredSize: Size.fromHeight(30.0)),
+                  leading: IconButton(
+                    icon: Icon(Icons.arrow_back, color: Color(0xFF545D68)),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MyHomePage()
+                      ));
+                    },
+                  ),
+                  title:
+                  Text('Location',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Color(0xFF545D68))),
 
-                ],
+                  actions: <Widget>[
+                    IconButton(
+                      icon: Icon(
+                          Icons.notifications_none, color: Color(0xFFC88D67)),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+                body: Stack(
+
+                  children: <Widget>[
+                    Container(
+                      child: GoogleMap(
+                        initialCameraPosition: _myLocation,
+                        mapType: MapType.normal,myLocationEnabled: true,
+// onMapCreated: (GoogleMapController controller) {
+////// _controller.complete(controller);
+////// },
+                        onMapCreated: model.onMapCreated,
+                        markers: model.markers,
+                        compassEnabled: false,
+                        myLocationButtonEnabled: false,
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: PredictionListAutoComplete(
+                      data: model.predictionL,
+                      textField: TextField(
+// textAlign: TextAlign.center,
+                          cursorColor: Colors.black,
+                          onSubmitted: model.onSubmitForm,
+//onChanged: mapModel.onPickupTextFieldChanged, not using it for now
+                          controller: model.formFieldController,
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color:Colors.black
+                              ),
+                              borderRadius:
+                              BorderRadius.all(
+                                Radius.circular(12),
+                              ),
+                            ),
+                            hintStyle: TextStyle(color: Colors.grey[500],),
+                            hintText: "Your location", suffixIcon: Icon(Icons.search,color: Colors.grey[500],),
+                            border: new OutlineInputBorder(
+                                borderSide: new BorderSide(color: Colors.black),
+                                borderRadius: BorderRadius
+                                    .all(
+                                    Radius.circular(12))
+                            ),
+
+                          ),
+                          keyboardType: TextInputType.text,
+                          textInputAction: TextInputAction.go
+                      ),
+                      itemTap: model.onPredictionItemClick,
+                    ),
+                      ),
+
+
+                  ],
+                )
               ),
             ),
-            floatingActionButton: FloatingActionButton(onPressed: () {},
-              backgroundColor: Color(0xFFF17532),
-              child: Icon(Icons.fastfood),
-            ),
-            floatingActionButtonLocation: FloatingActionButtonLocation
-                .centerDocked,
-            bottomNavigationBar: BottomBar(),
+            onWillPop: () async {
+              print('WILLPOPCSOPE');
+              model.clearAllModels();
+              return true;
+            },
           );
         }
     );
   }
 
-  _getCurrentLocation() {
-    geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
-      setState(() {
-        _currentPosition = position;
-      });
-
-      _getAddressFromLatLng();
-    }).catchError((e) {
-      print(e);
-    });
-  }
-
-  _getAddressFromLatLng() async {
-    try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(
-          _currentPosition.latitude, _currentPosition.longitude);
-
-      Placemark place = p[0];
-
-      setState(() {
-        _currentAddress =
-        "${place.locality}, ${place.postalCode}, ${place.country}";
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
 }

@@ -1,12 +1,13 @@
 import 'package:cookies_app/Ui/home.dart';
 import 'package:cookies_app/Ui/login.dart';
+import 'package:cookies_app/splash.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (context) => Login());
+        return MaterialPageRoute(builder: (context) => Splash());
 
       default:
         return MaterialPageRoute(
