@@ -36,6 +36,7 @@ class _ProfileState extends State<Profile>{
             FlatButton(
                 child: Text(
                   "Ok",
+
                   style: TextStyle(fontSize: 18,color: Color(0xFFC88D67)),
                 ),
                 onPressed: () {
