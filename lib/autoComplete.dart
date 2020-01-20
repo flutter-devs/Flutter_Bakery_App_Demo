@@ -66,14 +66,14 @@ class PredictionItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      color: Colors.black45,
+      color: Colors.black87,
       child: Column(
         children: <Widget>[
           ListTile(
             title: Text(
               prediction.description,
               overflow: TextOverflow.ellipsis,
-              maxLines: 1,
+              maxLines: 1,style: TextStyle(color: Colors.white),
             ),
           ),
           Divider(height: 1.0,)
