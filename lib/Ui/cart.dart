@@ -1,3 +1,4 @@
+import 'package:cookies_app/Ui/home.dart';
 import 'package:cookies_app/View_Model/cart_view_model.dart';
 import 'package:cookies_app/base/base_view.dart';
 import 'package:cookies_app/bottom_bar.dart';
@@ -189,7 +190,11 @@ class _CartState extends State<Cart> {
                 ]
             ),
 
-            floatingActionButton: FloatingActionButton(onPressed: () {},
+            floatingActionButton: FloatingActionButton(onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => MyHomePage(
+                  )));
+            },
               backgroundColor: Color(0xFFF17532),
               child: Icon(Icons.fastfood),
             ),

@@ -1,4 +1,5 @@
 import 'package:cookies_app/Ui/home.dart';
+import 'package:cookies_app/Ui/login.dart';
 import 'package:cookies_app/View_Model/profile_view_model.dart';
 import 'package:cookies_app/base/base_view.dart';
 import 'package:cookies_app/bottom_bar.dart';
@@ -12,6 +13,40 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile>{
+
+  showLogoutDialogBox(BuildContext context, String title, String content,
+      ) {
+    // flutter defined function
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: [
+            FlatButton(
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(fontSize: 18,color: Color(0xFFC88D67)),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+            FlatButton(
+                child: Text(
+                  "Ok",
+                  style: TextStyle(fontSize: 18,color: Color(0xFFC88D67)),
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Login()));
+                }),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +96,11 @@ class _ProfileState extends State<Profile>{
               actions: <Widget>[
                 IconButton(
                   icon: Icon(
-                      Icons.notifications_none, color: Color(0xFFC88D67)),
-                  onPressed: () {},
+                      Icons.power_settings_new, color: Color(0xFFC88D67)),
+                  onPressed: () {
+                    showLogoutDialogBox(context,'Logout',
+                        'Are you sure want to logout?');
+                  },
                 ),
                 /*Row(
             mainAxisAlignment:MainAxisAlignment.spaceAround,
@@ -200,7 +238,11 @@ class _ProfileState extends State<Profile>{
                 ],
               ),
             ),
-            floatingActionButton: FloatingActionButton(onPressed: () {},
+            floatingActionButton: FloatingActionButton(onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => MyHomePage(
+                  )));
+            },
               backgroundColor: Color(0xFFF17532),
               child: Icon(Icons.fastfood),
             ),

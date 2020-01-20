@@ -103,7 +103,11 @@ class _MyHomePageState extends State<MyHomePage>
                 )
               ],
             ),
-            floatingActionButton: FloatingActionButton(onPressed: () {},
+            floatingActionButton: FloatingActionButton(onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => MyHomePage(
+                  )));
+            },
               backgroundColor: Color(0xFFF17532),
               child: Icon(Icons.fastfood),
             ),
