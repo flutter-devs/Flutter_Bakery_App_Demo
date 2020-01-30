@@ -29,7 +29,7 @@ class CookieIceCream extends StatelessWidget {
                       primary: false,
                       crossAxisSpacing: 10.0,
                       mainAxisSpacing: 15.0,
-                      childAspectRatio: 0.8,
+                      childAspectRatio: 0.9,
                       children: <Widget>[
                         _buildCard('cookie chocochip', '\$3.99',
                             'assets/cookiechocochip.jpeg',

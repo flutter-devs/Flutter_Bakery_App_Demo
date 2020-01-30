@@ -29,7 +29,7 @@ class CookiePage extends StatelessWidget {
                       primary: false,
                       crossAxisSpacing: 10.0,
                       mainAxisSpacing: 15.0,
-                      childAspectRatio: 0.8,
+                      childAspectRatio: 0.9,
                       children: <Widget>[
                         _buildCard('brownie cookies', '\$3.99',
                             'assets/browniecookies.jpg',
