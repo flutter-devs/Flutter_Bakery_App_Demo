@@ -1,4 +1,5 @@
 import 'package:cookies_app/Ui/home.dart';
+import 'package:cookies_app/Ui/home_page.dart';
 import 'package:cookies_app/Ui/signup.dart';
 import 'package:cookies_app/View_Model/profile_view_model.dart';
 import 'package:cookies_app/base/base_view.dart';
@@ -54,13 +55,13 @@ class _LoginState extends State<Login>{
                         TextStyle(color: Colors.grey, fontSize: 18),),
                       cursorColor: Color(0xFFC88D67),
                     ),
-                    SizedBox(height: 25.0),
+                    SizedBox(height: 35.0),
 
                     Center(child: Text("Don't have an account?",style: TextStyle(color:  Color(0xFFC88D67)),)),
                     SizedBox(height: 5.0),
                     Center(
                       child: InkWell(
-                        child: Text("create a new account",style: TextStyle(color:  Color(0xFFC88D67),fontSize: 20),),
+                        child: Text("create a new account",style: TextStyle(color:  Color(0xFFC88D67),fontSize: 20,fontWeight: FontWeight.bold),),
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => SignUp()
@@ -77,7 +78,7 @@ class _LoginState extends State<Login>{
                                   .size
                                   .width - 50.0,
                               height: 50.0,
-                              margin: EdgeInsets.only(top: 60),
+                              margin: EdgeInsets.only(top: 30),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25.0),
                                   color: Color(0xFFF17532)
@@ -94,7 +95,7 @@ class _LoginState extends State<Login>{
                           ),
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => MyHomePage()
+                                builder: (context) => Page()
                             ));
                           },
                         )

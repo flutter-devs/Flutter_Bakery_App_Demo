@@ -49,7 +49,7 @@ class _SearchState extends State<Search>{
                     icon: Icon(Icons.arrow_back, color: Color(0xFF545D68)),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MyHomePage()
+                          builder: (context) => Home()
                       ));
                     },
                   ),

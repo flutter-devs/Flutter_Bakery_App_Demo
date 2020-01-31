@@ -39,7 +39,7 @@ class BottomBar extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
-                                              builder: (context) => MyHomePage()
+                                              builder: (context) => Home()
                                           ));
                                     }),
                                 IconButton(icon: Icon(Icons.person),

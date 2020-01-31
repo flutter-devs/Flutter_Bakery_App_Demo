@@ -7,12 +7,12 @@ import 'package:cookies_app/Ui/cookie_page.dart';
 import 'package:flutter/material.dart';
 
 
-class MyHomePage extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomeState createState() => _HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
+class _HomeState extends State<Home>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
 
@@ -114,17 +114,8 @@ class _MyHomePageState extends State<MyHomePage>
 
               ],
             ),
-            floatingActionButton: FloatingActionButton(onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => MyHomePage(
-                  )));
-            },
-              backgroundColor: Color(0xFFF17532),
-              child: Icon(Icons.fastfood),
-            ),
-            floatingActionButtonLocation: FloatingActionButtonLocation
-                .centerDocked,
-            bottomNavigationBar: BottomBar(),
+
+
           );
         }
     );
