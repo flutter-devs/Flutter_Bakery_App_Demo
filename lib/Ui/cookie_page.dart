@@ -39,7 +39,7 @@ class CookiePage extends StatelessWidget {
                             true, false, context),
                         _buildCard('Cookie classic', '\$1.99',
                             'assets/cookieclassic.jpg', false, true, context),
-                        _buildCard('peanut butter cookie', '\$2.99',
+                        _buildCard('peanut cookie', '\$2.99',
                             'assets/peanutbuttercookie.jpeg',
                             false, false, context)
                       ],
