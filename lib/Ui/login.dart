@@ -22,7 +22,7 @@ class _LoginState extends State<Login>{
           return SafeArea(
             child: Scaffold(
               body: Container(
-                margin: EdgeInsets.only(top: 100),
+                margin: EdgeInsets.only(top: 70),
                 height: MediaQuery
                     .of(context)
                     .size

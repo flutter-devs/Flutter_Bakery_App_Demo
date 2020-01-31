@@ -15,7 +15,7 @@ class CookiePage extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 15.0),
                 Container(
-                    padding: EdgeInsets.only(right: 15.0),
+                    padding: EdgeInsets.only(right: 15.0,left: 15),
                     width: MediaQuery
                         .of(context)
                         .size
@@ -23,13 +23,13 @@ class CookiePage extends StatelessWidget {
                     height: MediaQuery
                         .of(context)
                         .size
-                        .height - 50.0,
+                        .height - 30.0,
                     child: GridView.count(
                       crossAxisCount: 2,
                       primary: false,
                       crossAxisSpacing: 10.0,
                       mainAxisSpacing: 15.0,
-                      childAspectRatio: 0.9,
+                      childAspectRatio: 0.7,
                       children: <Widget>[
                         _buildCard('brownie cookies', '\$3.99',
                             'assets/browniecookies.jpg',
