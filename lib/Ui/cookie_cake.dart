@@ -41,7 +41,7 @@ class CookieCake extends StatelessWidget {
                             'assets/redvelvetcookie.jpeg', false, true,
                             context),
                         _buildCard('rainbow cake', '\$2.99',
-                            'assets/rainbowcakecookie.jpeg',
+                            'assets/redvelvetcakecookie.jpeg',
                             false, false, context)
                       ],
                     )),
