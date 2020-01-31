@@ -38,10 +38,10 @@ class CookieCake extends StatelessWidget {
                             'assets/marshmallowcakecookie.jpeg',
                             true, false, context),
                         _buildCard('redvelvet cake', '\$1.99',
-                            'assets/redvelvetcookie.jpeg', false, true,
+                            'assets/redvelvetcakecookie.jpeg', false, true,
                             context),
                         _buildCard('rainbow cake', '\$2.99',
-                            'assets/redvelvetcakecookie.jpeg',
+                            'assets/rainbowcakecookie.jpeg',
                             false, false, context)
                       ],
                     )),
